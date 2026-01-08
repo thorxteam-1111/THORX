@@ -1,0 +1,8 @@
+{
+  "name": "THORX. ",
+  "description": "A high-performance rewards platform with a cinematic industrial aesthetic, allowing users to earn PKR through ads and referrals.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
