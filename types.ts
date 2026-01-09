@@ -27,7 +27,7 @@ export interface EarningEvent {
 
 export interface Withdrawal {
   id: string;
-  method: 'JazzCash' | 'EasyPaisa' | 'Bank';
+  method: 'JazzCash' | 'EasyPaisa';
   accountNumber: string;
   amount: number;
   status: 'PENDING' | 'APPROVED' | 'REJECTED';

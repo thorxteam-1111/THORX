@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>THORX | Premium Earning System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
       :root {
         --thorx-orange: #FF5722;
         --thorx-beige: #E5E4D7;
-        --thorx-black: #000000;
+        --thorx-black: #050505;
         --thorx-border: 2px;
       }
 
@@ -25,6 +25,14 @@
         padding: 0;
         overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        /* Improve touch response */
+        touch-action: manipulation;
+      }
+
+      /* Safe Area for Mobile Nav */
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom, 20px);
       }
 
       /* Subtle Grain Texture */
@@ -36,34 +44,36 @@
         width: 100%;
         height: 100%;
         background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-        opacity: 0.03;
+        opacity: 0.04;
         pointer-events: none;
         z-index: 9999;
+        mix-blend-mode: overlay;
       }
 
       .font-mono {
         font-family: 'JetBrains+Mono', monospace;
       }
 
+      /* Industrial Design System */
       .industrial-border {
         border: var(--thorx-border) solid var(--thorx-black);
       }
 
       .industrial-shadow {
-        box-shadow: 6px 6px 0px 0px var(--thorx-black);
-      }
-
-      .industrial-shadow-sm {
-        box-shadow: 3px 3px 0px 0px var(--thorx-black);
+        box-shadow: 4px 4px 0px 0px var(--thorx-black);
       }
 
       .industrial-shadow-lg {
-        box-shadow: 12px 12px 0px 0px var(--thorx-black);
+        box-shadow: 8px 8px 0px 0px var(--thorx-black);
+      }
+      
+      .industrial-shadow-sm {
+        box-shadow: 2px 2px 0px 0px var(--thorx-black);
       }
 
-      .industrial-shadow:active {
+      .industrial-active:active {
         transform: translate(2px, 2px);
-        box-shadow: 2px 2px 0px 0px var(--thorx-black);
+        box-shadow: 0px 0px 0px 0px var(--thorx-black);
       }
 
       .barcode-pattern {
@@ -71,26 +81,21 @@
         height: 12px;
       }
 
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 10px;
+      /* Marquee Animation */
+      @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
       }
-      ::-webkit-scrollbar-track {
-        background: var(--thorx-beige);
-        border-left: 2px solid #000;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #000;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: var(--thorx-orange);
+      .animate-marquee {
+        animation: marquee 30s linear infinite;
       }
 
+      /* Scanline Effect */
       @keyframes scanline {
-        0% { transform: translateY(-100%); }
-        100% { transform: translateY(100%); }
+        0% { transform: translateY(-100%); opacity: 0.5; }
+        50% { opacity: 0.2; }
+        100% { transform: translateY(100%); opacity: 0.5; }
       }
-
       .scanline {
         position: absolute;
         top: 0;
@@ -98,8 +103,18 @@
         width: 100%;
         height: 100%;
         background: linear-gradient(to bottom, transparent 0%, rgba(255, 87, 34, 0.1) 50%, transparent 100%);
-        animation: scanline 4s linear infinite;
+        animation: scanline 3s linear infinite;
         pointer-events: none;
+        z-index: 10;
+      }
+
+      /* No Scrollbar Utility */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
       }
     </style>
     <script type="importmap">
